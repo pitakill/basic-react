@@ -1,31 +1,27 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 import './App.css'
+import Message from './components/Message'
 
 class App extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log("Me construí", props)
+  state = {
+    people: []
   }
 
-  componentDidMount() {
-    console.log("Me monté")
-  }
-
-  componentWillMount() {
-    console.log("Me montaré")
+  async componentDidMount() {
+    const responseRaw = await fetch('https://swapi.co/api/people/')
+    const response = await responseRaw.json()
+    this.setState({people: response.results})
   }
 
   render() {
-    console.log("Me pinté")
     return (
-      <h1 className="App">{this.props.message}</h1>
-    );
+      <React.Fragment>
+        {
+          this.state.people.map((p, index) => <Message key={index} index={index} message={p.name} />)
+        }
+      </React.Fragment>
+    )
   }
-}
-
-App.propTypes = {
-  message: PropTypes.string.isRequired
 }
 
 export default App
