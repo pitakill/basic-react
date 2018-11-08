@@ -1,14 +1,11 @@
+// @flow
 import React from 'react'
-import PropTypes from 'prop-types'
+import type {MessageProps} from './Message.type'
 
-class Message extends React.Component {
+class Message extends React.Component<MessageProps, void> {
   render () {
     return <h1>{this.props.message}</h1>
   }
-}
-
-Message.propTypes = {
-  message: PropTypes.string.isRequired
 }
 
 export default Message

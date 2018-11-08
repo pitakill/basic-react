@@ -1,25 +1,27 @@
-import React from 'react'
+// @flow
+import * as React from 'react'
 import './App.css'
+import type {AppState} from './App.types'
 import Message from './components/Message'
 
-class App extends React.Component {
+class App extends React.Component<{}, AppState> {
   state = {
     people: []
   }
 
-  async componentDidMount() {
+  async componentDidMount(): Promise<any> {
     const responseRaw = await fetch('https://swapi.co/api/people/')
     const response = await responseRaw.json()
     this.setState({people: response.results})
   }
 
-  render() {
+  render(): React.Element<typeof React.Fragment> {
     return (
-      <React.Fragment>
+      <>
         {
           this.state.people.map((p, index) => <Message key={index} index={index} message={p.name} />)
         }
-      </React.Fragment>
+      </>
     )
   }
 }

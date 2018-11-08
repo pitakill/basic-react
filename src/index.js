@@ -1,6 +1,11 @@
-import React from 'react';
-import {render} from 'react-dom';
-import './index.css';
-import App from './App';
+// @flow
+import React from 'react'
+import {render} from 'react-dom'
+import './index.css'
+import App from './App'
 
-render(<App />, document.getElementById('root'));
+const root = document.getElementById('root')
+
+if (root instanceof HTMLElement) {
+  render(<App />, root)
+}
