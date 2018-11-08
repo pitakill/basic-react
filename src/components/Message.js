@@ -1,6 +1,6 @@
 // @flow
 import React from 'react'
-import type {MessageProps} from './Message.type'
+import type {MessageProps} from './Message.types'
 
 class Message extends React.Component<MessageProps, void> {
   render () {
